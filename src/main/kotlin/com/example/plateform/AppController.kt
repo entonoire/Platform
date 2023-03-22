@@ -16,18 +16,11 @@ class AppController : Initializable {
     @FXML
     private lateinit var background: ImageView
     @FXML
-    private lateinit var platform: ImageView
-    @FXML
     private lateinit var stackPane: StackPane
 
     @FXML
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("[Platform] Initialized")
-
-        platform.fitWidth = 85.0
-        platform.fitHeight = 85.0
-        platform.x = 0.0
-        PlatformInteraction(platform)
 
         background.fitWidth = 850.0
         background.fitHeight = 850.0
