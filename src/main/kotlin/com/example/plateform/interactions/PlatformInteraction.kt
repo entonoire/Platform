@@ -9,6 +9,8 @@ import kotlin.random.Random
 
 class PlatformInteraction(node: Node) {
 
+    // add last size thing, to have the same size (is alt pressed on create) than the last edited platform when you create another platform
+
     /*
         register a new platform
      */
@@ -31,6 +33,36 @@ class PlatformInteraction(node: Node) {
         node.setOnMouseClicked { event ->
             if (event.button == MouseButton.SECONDARY) {
                 AppController.pane.children.remove(node)
+
+            }
+
+        }
+
+        /*
+            set platform size
+         */
+        node.setOnScroll { event ->
+            if (event.isControlDown) {
+                if (event.deltaY > 0.0) {
+                    node.scaleX += 0.6
+                    node.scaleY += 0.6
+
+                } else if (node.scaleX > 1) {
+                    node.scaleX -= 0.6
+                    node.scaleY -= 0.6
+
+                }
+
+            } else {
+                if (event.deltaY > 0.0) {
+                    node.scaleX += 0.1
+                    node.scaleY += 0.1
+
+                } else if (node.scaleX > 0.3) {
+                    node.scaleX -= 0.1
+                    node.scaleY -= 0.1
+
+                }
 
             }
 
