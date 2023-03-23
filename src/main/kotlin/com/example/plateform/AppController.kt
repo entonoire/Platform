@@ -4,10 +4,10 @@ import com.example.plateform.interactions.BackgroundInteraction
 import com.example.plateform.interactions.PlatformInteraction
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.Node
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.StackPane
-import javafx.scene.layout.VBox
 import java.net.URL
 import java.util.*
 
@@ -31,6 +31,7 @@ class AppController : Initializable {
     }
 
     companion object {
+        var selectedObject: Node? = null
         lateinit var pane: StackPane
 
         fun addPlatform(x: Double, y: Double) {

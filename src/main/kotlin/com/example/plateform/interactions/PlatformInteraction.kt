@@ -2,14 +2,12 @@ package com.example.plateform.interactions
 
 import com.example.plateform.AppController
 import javafx.scene.Node
-import javafx.scene.effect.Effect
 import javafx.scene.effect.Glow
 import javafx.scene.input.MouseButton
-import kotlin.random.Random
 
 class PlatformInteraction(node: Node) {
 
-    // add last size thing, to have the same size (is alt pressed on create) than the last edited platform when you create another platform
+    // add last size thing, to have the same size (if alt pressed on create) than the last edited platform when you create another platform
 
     /*
         register a new platform
@@ -27,12 +25,32 @@ class PlatformInteraction(node: Node) {
 
         }
 
-        /*
-            remove platform
-         */
         node.setOnMouseClicked { event ->
+            /*
+                remove platform
+             */
             if (event.button == MouseButton.SECONDARY) {
                 AppController.pane.children.remove(node)
+
+            }
+
+            /*
+                select platform
+             */
+            if (event.button == MouseButton.PRIMARY) {
+                if (AppController.selectedObject == node) {
+                    // remove effect
+                    node.effect = null
+                    AppController.selectedObject = null
+
+                } else {
+                    // add effect
+                    node.effect = Glow(0.5)
+
+                    if (AppController.selectedObject != null) AppController.selectedObject!!.effect = null
+                    AppController.selectedObject = node
+
+                }
 
             }
 
