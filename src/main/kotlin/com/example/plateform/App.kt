@@ -1,12 +1,10 @@
 package com.example.plateform
 
-import com.example.plateform.interactions.PlatformInteraction
 import javafx.application.Application
-import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
+import javafx.scene.Node
 import javafx.scene.Scene
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
+import javafx.scene.input.KeyCode
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 import kotlin.system.exitProcess
@@ -15,6 +13,9 @@ class App : Application() {
 
     companion object {
         lateinit var root: VBox
+        var copiedObject: Node? = null
+        var mousePosition = com.example.plateform.Point(0.0, 0.0)
+
     }
 
     override fun start(stage: Stage) {
@@ -26,6 +27,39 @@ class App : Application() {
         stage.title = "Platform"
         stage.scene = scene
         stage.show()
+
+
+        /*
+            get mouse position
+         */
+        scene.setOnMouseMoved { event ->
+            mousePosition = com.example.plateform.Point(event.sceneX, event.sceneY)
+
+        }
+
+
+        scene.setOnKeyPressed { event ->
+            if (event.isControlDown) {
+                if (event.code == KeyCode.C) {
+                    if (AppController.selectedObject != null) {
+                        copiedObject = AppController.selectedObject
+
+                    }
+
+                }
+
+                if (event.code == KeyCode.V) {
+                    if (copiedObject != null) {
+                        AppController.addPlatformFrom(copiedObject!!, mousePosition)
+
+                    }
+
+                }
+
+            }
+
+        }
+
 
         println("[Platform] Started")
     }

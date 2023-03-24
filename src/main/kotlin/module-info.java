@@ -7,6 +7,7 @@ module com.example.plateform {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.plateform to javafx.fxml;
     exports com.example.plateform;

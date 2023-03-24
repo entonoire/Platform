@@ -8,6 +8,7 @@ import javafx.scene.Node
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.StackPane
+import java.lang.System.Logger
 import java.net.URL
 import java.util.*
 
@@ -44,6 +45,25 @@ class AppController : Initializable {
             PlatformInteraction(platform)
 
             pane.children.add(platform)
+
+        }
+
+        fun addPlatformFrom(node: Node, loc: com.example.plateform.Point) {
+            if (node is ImageView) {
+                val platform = ImageView(Image("https://i.pinimg.com/originals/b8/46/99/b846991fec1f185eb40b90aba0aa72ac.jpg"))
+                platform.fitWidth = 85.0 * node.scaleX
+                platform.fitHeight = 85.0 * node.scaleY
+                platform.translateX = loc.x - 359.5
+                platform.translateY = loc.y - 242.5
+
+                PlatformInteraction(platform)
+                pane.children.add(platform)
+
+                PlatformInteraction.select(platform)
+
+            } else {
+                println("[Platform] addPlatformFrom, the requested node is not an ImageView")
+            }
 
         }
 

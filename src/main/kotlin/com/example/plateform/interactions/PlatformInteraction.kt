@@ -3,6 +3,7 @@ package com.example.plateform.interactions
 import com.example.plateform.AppController
 import javafx.scene.Node
 import javafx.scene.effect.Glow
+import javafx.scene.input.KeyCode
 import javafx.scene.input.MouseButton
 
 class PlatformInteraction(node: Node) {
@@ -39,16 +40,10 @@ class PlatformInteraction(node: Node) {
              */
             if (event.button == MouseButton.PRIMARY) {
                 if (AppController.selectedObject == node) {
-                    // remove effect
-                    node.effect = null
-                    AppController.selectedObject = null
+                    deselect(node)
 
                 } else {
-                    // add effect
-                    node.effect = Glow(0.5)
-
-                    if (AppController.selectedObject != null) AppController.selectedObject!!.effect = null
-                    AppController.selectedObject = node
+                    select(node)
 
                 }
 
@@ -89,5 +84,22 @@ class PlatformInteraction(node: Node) {
     }
 
 
+    companion object {
+        fun select(platform: Node) {
+            // add effect
+            platform.effect = Glow(0.5)
+
+            if (AppController.selectedObject != null) AppController.selectedObject!!.effect = null
+            AppController.selectedObject = platform
+        }
+
+        fun deselect(platform: Node) {
+            // remove effect
+            platform.effect = null
+            AppController.selectedObject = null
+
+        }
+
+    }
 
 }
