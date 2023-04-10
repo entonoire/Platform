@@ -1,6 +1,6 @@
-package com.example.plateform.interactions
+package fr.vallfeur.plateform.interactions
 
-import com.example.plateform.AppController
+import fr.vallfeur.plateform.AppController
 import javafx.scene.Node
 import javafx.scene.input.MouseButton
 
@@ -12,7 +12,7 @@ class BackgroundInteraction(node: Node) {
          */
         node.setOnMouseClicked { event ->
             if (event.button == MouseButton.PRIMARY) {
-                AppController.addPlatform(event.sceneX, event.sceneY)
+                PlatformInteraction.select(AppController.addPlatform(event.sceneX, event.sceneY))
 
             }
 

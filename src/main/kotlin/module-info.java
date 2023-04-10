@@ -9,6 +9,6 @@ module com.example.plateform {
     requires com.almasb.fxgl.all;
     requires java.desktop;
 
-    opens com.example.plateform to javafx.fxml;
-    exports com.example.plateform;
+    opens fr.vallfeur.plateform to javafx.fxml;
+    exports fr.vallfeur.plateform;
 }
